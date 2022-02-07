@@ -1,0 +1,28 @@
+﻿html, body{
+  min-height: 100%;
+  height: 100%;
+}
+
+.fill{
+  height: calc(100vh - 100px);
+}
+
+body {
+  padding-top: 30px; /* space for the top nav bar */
+  margin-right: 30px;
+}
+
+#userHubs {
+  overflow: auto;
+  width: 100%;
+  height: calc(100vh - 200px);
+}
+
+.adsk-viewing-viewer {
+  width: 50%; 
+}
+
+.adsk-viewing-viewer {
+  width: 50%; 
+}
+ 

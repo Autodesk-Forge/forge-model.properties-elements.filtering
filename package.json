@@ -1,0 +1,31 @@
+{
+  "name": "forgesample",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node start.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "cookie-parser": "^1.4.4",
+    "cookie-session": "^1.4.0",
+    "crypto": "^1.0.1",
+    "express": "^4.17.1",
+    "express-session": "^1.16.2",
+    "extract-zip": "^2.0.1",
+    "forge-apis": "^0.4.5",
+    "fs": "0.0.1-security",
+    "mkdirp": "^0.5.1",
+    "node-fetch": "^2.6.0",
+    "pako": "^1.0.10",
+    "powerbi-client": "^2.8.0",
+    "rimraf": "^3.0.0",
+    "route-async": "^1.0.5",
+    "socket.io": "2.2.0",
+    "superagent": "^5.1.0",
+    "tiny-async-pool": "^1.2.0",
+    "unzip": "^0.1.11"
+  }
+}
