@@ -82,7 +82,7 @@ OR, set enviroment variables at [launch.json](/.vscode/launch.json) for debuggin
 
 ## Limitations
 
-The indexing of model have a lot of properties. This sample uses [JqueryBuilder](https://querybuilder.js.org/) for the users to input filtering conditions. Only a few properties options are initialized in [queryBuilder.js](./public/js/queryBuilder.js). you will need to add more yourself if needed. In addition, not all conditions are transformed to the query of Indexing API.  to add more conditions, follow the similar logic in the click event of [**query** button](). 
+The indexing of model have a lot of properties. This sample uses [JqueryBuilder](https://querybuilder.js.org/) for the users to input filtering conditions. Only a few properties options are initialized in [queryBuilder.js](./public/js/queryBuilder.js#L30-L161). you will need to add more yourself if needed. In addition, not all conditions are transformed to the query of Indexing API.  to add more conditions, follow the similar logic in the click event of [**query** button](./public/js/queryBuilder.js#L240-L295). 
 
 
 ## Deployment
