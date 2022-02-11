@@ -24,7 +24,7 @@ This sample demonstrates the use case to filter model elements with specific que
 
 # Demonstration
 [![https://youtu.be/X2FCxfJi2g8](http://img.youtube.com/vi/dxqxKUyitU0/0.jpg)](https://youtu.be/dxqxKUyitU0 "Forge Filter Elements by Index API of BIM360/ACC")
- 
+
 
 # Setup
 
@@ -34,7 +34,22 @@ This sample demonstrates the use case to filter model elements with specific que
 2. **BIM 360 or ACC Account**: must be Account Admin to add the app integration. [Learn about provisioning](https://forge.autodesk.com/blog/bim-360-docs-provisioning-forge-apps). 
 3. **Node.js**: basic knowledge with [**Node.js**](https://nodejs.org/en/).
 4. Basic knowledge with **html5**,**JavaScript**, **css**,**jQuery**, **bootstrap** etc. 
-5. Basic knowledge with **Data Management API with BIM360 or ACC**,**Forge Viewer** etc.s 
+5. Basic knowledge with **Data Management API with BIM360 or ACC**,**Forge Viewer** and **Model Properties API** etc.
+
+
+## Limitations
+
+This sample uses [JqueryBuilder](https://querybuilder.js.org/) for the users to input filtering conditions. However it does not mean the condition options of JqueryBuilder are exactly equivelent to those of Model Properties API. e.g. 
+  - the option is called 'equal' in JqueryBuilder, while will be '$eq' in Model Properties API. This sample transforms some options at [operators_map](./public/js/queryBuilder.js#L220-L228), but not all are  transformed. 
+  - Model Properties API can support *$like*, while JqueryBuilder does not have such option by default (unless you extend its options list)
+For more information about query schemas of Model Properties API, please check [Model Property Service Query Language Reference](https://forge.autodesk.com/en/docs/acc/v1/tutorials/model-properties/query-ref/).
+
+In addition, the indexing of model can have a lot of properties.  Only a few properties options are initialized in [queryBuilder.js](./public/js/queryBuilder.js#L30-L161) for testing Revit model specific. It is suggested you try with the demo Revit models which can be downloaded in [Model Properties API Postman Collection](https://github.com/Autodesk-Forge/forge-model.properties-postman.collection/tree/main/DemoModels). Please add other properties options yourself if needed. 
+
+If you want to test other type of models, please ensure the initialized properties options in the sample are meaningful to your model data. Better firstly download the demo data by other test tools to inspect the possible properties and get their keys, such as [Model Properties API Postman Collection](https://github.com/Autodesk-Forge/forge-model.properties-postman.collection), or [Model Properties API walkthrough by PowerShell Core](https://github.com/Autodesk-Forge/forge-model-properties.powershell). 
+
+In this sample [**query** button](./public/js/queryBuilder.js#L243-L295), it will iterate each input rules from JqueryBuilder input, and transform the queries with the schemas of Model Properties API, however it only implements one level nested conditions. The more complex nested conditions have not been implemented, while you could try to follow the similar logic in the [**query** button](./public/js/queryBuilder.js#L245-L295) to extend its ability.
+
 
 ## Running locally
 
@@ -44,7 +59,7 @@ Clone this project or download it (this `nodejs` branch only). It's recommended 
 
     git clone https://github.com/Autodesk-Forge/forge-model.properties-elements.filtering
 
-Install the required packages using `npm install`. Set the enviroment variables with your client ID, client secret, callback url and finally start it. Via command line, navigate to the folder where this repository was cloned and use the following:
+Install the required packages using `npm install`. Set the environment variables with your client ID, client secret, callback url and finally start it. Via command line, navigate to the folder where this repository was cloned and use the following:
 
 Mac OSX/Linux (Terminal)
 
@@ -62,12 +77,12 @@ Windows (use **Node.js command line** from Start menu)
     set FORGE_CALLBACK_URL=<<YOUR CALLBACK URL>>
     npm start
 
-OR, set enviroment variables at [launch.json](/.vscode/launch.json) for debugging.
+OR, set environment variables at [launch.json](/.vscode/launch.json) for debugging.
 
  
  ## Use Cases
 
-1. Open the browser: [http://localhost:3000](http://localhost:3000). Please watch the [Video](https://youtu.be/sJmeiK3xYTU) for the detail and usage.
+1. Open the browser: [http://localhost:3000](http://localhost:3000). Please watch the [Video](https://youtu.be/dxqxKUyitU0) for the detail and usage.
 
 2. After the user logging succeeds, the code will start to extract all hubs, all projects, folders and model versions.
 
@@ -78,11 +93,6 @@ OR, set enviroment variables at [launch.json](/.vscode/launch.json) for debuggin
 <img src="./help/query.png" width="800"> 
 
 5. After querying is completed, click **Load** button, only the elements that match the conditions will be loaded in the viewer.  
-
-
-## Limitations
-
-The indexing of model have a lot of properties. This sample uses [JqueryBuilder](https://querybuilder.js.org/) for the users to input filtering conditions. Only a few properties options are initialized in [queryBuilder.js](./public/js/queryBuilder.js#L30-L161). you will need to add more yourself if needed. In addition, not all conditions are transformed to the query of Indexing API.  to add more conditions, follow the similar logic in the click event of [**query** button](./public/js/queryBuilder.js#L240-L295). 
 
 
 ## Deployment
@@ -129,4 +139,3 @@ This sample is licensed under the terms of the [MIT License](http://opensource.o
 
 ## Written by
 Xiaodong Liang [@coldwood](https://twitter.com/coldwood), [Forge Advocate and Support](http://forge.autodesk.com)
-

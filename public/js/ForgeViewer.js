@@ -52,14 +52,16 @@ function loadModel(viewer, urn, viewableId ) {
       });
     else
       viewer.loadDocumentNode(doc, viewables).then(i => {
-        //if it is a Revit model, download aec data
-        //if( == '*.rvt') ?
+        //try to download aec data to find available levels
+        //as Model Properties API data returns properties of object, but 
+        //does not provide the available values of each field(column)
         viewer.model.getDocumentNode().
         getDocument().downloadAecModelData(aecdata=>{
-           global_queryBuilder.aec_data = aecdata
-           const levels = aecdata.levels.map(a=>a.name) 
-           global_queryBuilder.filters.find(i=>i.id=='p01bbdcf2').values = levels
-
+          if(aecdata){
+              global_queryBuilder.aec_data = aecdata
+              const levels = aecdata.levels.map(a=>a.name) 
+              global_queryBuilder.filters.find(i=>i.id=='p01bbdcf2').values = levels
+           }
            global_queryBuilder.reset()
          })
       });

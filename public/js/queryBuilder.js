@@ -214,6 +214,7 @@ class QueryBuilder {
     });
 
     $('#query').on('click', function () {
+
       var result = $('#builder').queryBuilder('getRules');
 
       const operators_map = {
@@ -238,6 +239,7 @@ class QueryBuilder {
         //alert(JSON.stringify(result, null, 2));
 
         const top_cond = result.condition
+        var unsupportedInput = false
 
         if (top_cond) {
           payload.query[`${operators_map[top_cond]}`] = []
@@ -251,6 +253,11 @@ class QueryBuilder {
               for (var j = 0; j < oneRule.rules.length; j++) {
                 var oneSubRule = oneRule.rules[j]
                 var oper = operators_map[oneSubRule.operator]
+                if(!oper || oper== undefined){
+                  alert(`**${oneRule.operator}** has not been supported in this sample yet! \nPlease try with other conditions(equal, not_equal,greater,less)`)
+                  unsupportedInput = true
+                  break
+                }
                 var denote = `s.props.${oneSubRule.id}`
                 var value = oneSubRule.value
                 if (oneSubRule.type == 'string')
@@ -271,6 +278,12 @@ class QueryBuilder {
 
             } else {
               var oper = operators_map[oneRule.operator]
+              if(!oper || oper== undefined){
+                alert(`**${oneRule.operator}** has not been supported in this sample yet! \nPlease try with other conditions(equal, not_equal,greater,less)`)
+                unsupportedInput = true
+                break
+              }
+
               var denote = `s.props.${oneRule.id}`
               var value = oneRule.value
               if (oneRule.type == 'string')
@@ -293,6 +306,9 @@ class QueryBuilder {
         }
 
       }
+
+      if(unsupportedInput) //some unsupported input, do nothing
+        return
 
       $('#query_running_img').show()
       $.ajax({
