@@ -17,7 +17,7 @@
 
 # Description
 
-This sample demonstrates the use case to filter model elements with specific queries conditions and load those filtered elements in Forge Viewer. It uses Index API of BIM360 or ACC to query the elements.
+This sample demonstrates the use case to filter model elements with specific queries conditions and load those filtered elements in Forge Viewer. It uses **Model Properties API** of BIM360 or ACC to index & query the elements.
 
 # Thumbnail
 <img src="./help/main.png" width="800"> 
