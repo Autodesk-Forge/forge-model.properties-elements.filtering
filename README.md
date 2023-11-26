@@ -1,3 +1,4 @@
+# DEPRECATED
 This repository has been deprecated and migrated to https://github.com/autodesk-platform-services/aps-model.properties-elements.filtering
 
 
@@ -21,6 +22,7 @@ This repository has been deprecated and migrated to https://github.com/autodesk-
 # Description
 
 This sample demonstrates the use case of filtering model elements with specific queries conditions and load the filtered elements in Forge Viewer. It uses **Model Properties API** to index & query the elements.
+
 
 # Thumbnail
 <img src="./help/main.png" width="800"> 
